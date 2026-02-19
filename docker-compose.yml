@@ -1,0 +1,66 @@
+services:
+  # 1. Hobby Storefront - Active
+  hobby-storefront:
+    build:
+      context: ./hobby-store
+      dockerfile: ../Dockerfile
+      args:
+        NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-http://localhost:9000}
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL_HOBBY:-http://localhost:8001}
+        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${HOBBY_PUBLISHABLE_KEY}
+        NEXT_PUBLIC_DEFAULT_REGION: tr
+        NEXT_PUBLIC_STORE_ID: hobby
+    container_name: hobby-storefront
+    volumes:
+      - ./hobby-store:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env
+    ports:
+      - "8001:8000"
+    restart: always
+
+  # 2. Clay Storefront - Active
+  clay-storefront:
+    build:
+      context: ./clay-store
+      dockerfile: ../Dockerfile
+      args:
+        NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-http://localhost:9000}
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL_CLAY:-http://localhost:8002}
+        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${CLAY_PUBLISHABLE_KEY}
+        NEXT_PUBLIC_DEFAULT_REGION: tr
+        NEXT_PUBLIC_STORE_ID: clay
+    container_name: clay-storefront
+    volumes:
+      - ./clay-store:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env
+    ports:
+      - "8002:8000"
+    restart: always
+
+  # 3. Sedefli Storefront - Active
+  sedefli-storefront:
+    build:
+      context: ./sedefli-store
+      dockerfile: ../Dockerfile
+      args:
+        NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-http://localhost:9000}
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL_SEDEFLI:-http://localhost:8003}
+        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${SEDEFLI_PUBLISHABLE_KEY}
+        NEXT_PUBLIC_DEFAULT_REGION: tr
+        NEXT_PUBLIC_STORE_ID: sedefli
+    container_name: sedefli-storefront
+    volumes:
+      - ./sedefli-store:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env
+    ports:
+      - "8003:8000"
+    restart: always

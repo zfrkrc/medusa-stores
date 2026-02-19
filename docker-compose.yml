@@ -1,66 +1,75 @@
 services:
-  # 1. Hobby Storefront - Active
+  # 1. Hobby Storefront
   hobby-storefront:
     build:
       context: ./hobby-store
-      dockerfile: ../Dockerfile
-      args:
-        NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-http://localhost:9000}
-        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL_HOBBY:-http://localhost:8001}
-        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${HOBBY_PUBLISHABLE_KEY}
-        NEXT_PUBLIC_DEFAULT_REGION: tr
-        NEXT_PUBLIC_STORE_ID: hobby
+      dockerfile: Dockerfile
     container_name: hobby-storefront
     volumes:
-      - ./hobby-store:/app
-      - /app/node_modules
-      - /app/.next
+      - hobby-store-node_modules:/app/node_modules
+      - hobby-next-build:/app/.next
     env_file:
       - .env
+    environment:
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://hobby-backend:7001
+      - MEDUSA_BACKEND_URL=http://hobby-backend:7001
+      - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${HOBBY_PUBLISHABLE_KEY}
     ports:
       - "8001:8000"
     restart: always
+    networks:
+      - hobby-network
 
-  # 2. Clay Storefront - Active
+  # 2. Clay Storefront
   clay-storefront:
     build:
       context: ./clay-store
-      dockerfile: ../Dockerfile
-      args:
-        NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-http://localhost:9000}
-        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL_CLAY:-http://localhost:8002}
-        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${CLAY_PUBLISHABLE_KEY}
-        NEXT_PUBLIC_DEFAULT_REGION: tr
-        NEXT_PUBLIC_STORE_ID: clay
+      dockerfile: Dockerfile
     container_name: clay-storefront
     volumes:
-      - ./clay-store:/app
-      - /app/node_modules
-      - /app/.next
+      - clay-store-node_modules:/app/node_modules
+      - clay-next-build:/app/.next
     env_file:
       - .env
+    environment:
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://hobby-backend:7001
+      - MEDUSA_BACKEND_URL=http://hobby-backend:7001
+      - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${CLAY_PUBLISHABLE_KEY}
     ports:
       - "8002:8000"
     restart: always
+    networks:
+      - hobby-network
 
-  # 3. Sedefli Storefront - Active
+  # 3. Sedefli Storefront
   sedefli-storefront:
     build:
       context: ./sedefli-store
-      dockerfile: ../Dockerfile
-      args:
-        NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-http://localhost:9000}
-        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL_SEDEFLI:-http://localhost:8003}
-        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${SEDEFLI_PUBLISHABLE_KEY}
-        NEXT_PUBLIC_DEFAULT_REGION: tr
-        NEXT_PUBLIC_STORE_ID: sedefli
+      dockerfile: Dockerfile
     container_name: sedefli-storefront
     volumes:
-      - ./sedefli-store:/app
-      - /app/node_modules
-      - /app/.next
+      - sedefli-store-node_modules:/app/node_modules
+      - sedefli-next-build:/app/.next
     env_file:
       - .env
+    environment:
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://hobby-backend:7001
+      - MEDUSA_BACKEND_URL=http://hobby-backend:7001
+      - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${SEDEFLI_PUBLISHABLE_KEY}
     ports:
       - "8003:8000"
     restart: always
+    networks:
+      - hobby-network
+
+networks:
+  hobby-network:
+    external: true
+
+volumes:
+  hobby-store-node_modules:
+  hobby-next-build:
+  clay-store-node_modules:
+  clay-next-build:
+  sedefli-store-node_modules:
+  sedefli-next-build:

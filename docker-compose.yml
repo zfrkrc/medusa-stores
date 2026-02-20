@@ -14,6 +14,7 @@ services:
       - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://hobby-backend:7001
       - MEDUSA_BACKEND_URL=http://hobby-backend:7001
       - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${HOBBY_PUBLISHABLE_KEY}
+      - NEXT_PUBLIC_STORE_ID=hobby
     ports:
       - "8001:8000"
     restart: always
@@ -35,6 +36,7 @@ services:
       - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://hobby-backend:7001
       - MEDUSA_BACKEND_URL=http://hobby-backend:7001
       - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${CLAY_PUBLISHABLE_KEY}
+      - NEXT_PUBLIC_STORE_ID=clay
     ports:
       - "8002:8000"
     restart: always
@@ -56,6 +58,7 @@ services:
       - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://hobby-backend:7001
       - MEDUSA_BACKEND_URL=http://hobby-backend:7001
       - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${SEDEFLI_PUBLISHABLE_KEY}
+      - NEXT_PUBLIC_STORE_ID=sedefli
     ports:
       - "8003:8000"
     restart: always

@@ -6,9 +6,9 @@ import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "Sedefli Atölye - Sedef Kakma Sanatı",
   description:
-    "A performant frontend ecommerce starter template with Next.js 15 and Medusa.",
+    "Sedefli Atölye - Sedef kakma sanatı ve porselen işçiliğinde ustalık. Her biri eşsiz, her biri özel.",
 }
 
 export default async function Home(props: {

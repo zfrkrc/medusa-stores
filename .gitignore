@@ -36,5 +36,3 @@ clean.ps1
 entrypoint.sh
 package-lock.json
 yarn.lock
-.env.example
-.env

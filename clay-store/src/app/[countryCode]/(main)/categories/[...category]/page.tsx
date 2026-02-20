@@ -28,7 +28,7 @@ export async function generateStaticParams() {
     )
 
     const categoryHandles = product_categories.map(
-      (category: any) => kategorisi.handle
+      (category: any) => category.handle
     )
 
     const staticParams = countryCodes
@@ -60,7 +60,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       title: `${title} | Clay by Sevgi`,
       description,
       alternates: {
-        canonical: `${params.kategorisi.join("/")}`,
+        canonical: `${params.category.join("/")}`,
       },
     }
   } catch (error) {

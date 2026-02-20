@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:22-alpine
 WORKDIR /app
 RUN apk update && apk upgrade --no-cache && apk add --no-cache git curl dos2unix
 COPY . .

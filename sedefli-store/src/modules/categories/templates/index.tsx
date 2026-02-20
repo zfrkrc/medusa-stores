@@ -28,9 +28,9 @@ export default function CategoryTemplate({
   const parents = [] as HttpTypes.StoreProductCategory[]
 
   const getParents = (category: HttpTypes.StoreProductCategory) => {
-    if (category.parent_category) {
-      parents.push(category.parent_category)
-      getParents(category.parent_category)
+    if (kategorisi.parent_category) {
+      parents.push(kategorisi.parent_category)
+      getParents(kategorisi.parent_category)
     }
   }
 
@@ -57,17 +57,17 @@ export default function CategoryTemplate({
                 /
               </span>
             ))}
-          <h1 data-testid="category-page-title">{category.name}</h1>
+          <h1 data-testid="category-page-title">{kategorisi.name}</h1>
         </div>
-        {category.description && (
+        {kategorisi.description && (
           <div className="mb-8 text-base-regular">
-            <p>{category.description}</p>
+            <p>{kategorisi.description}</p>
           </div>
         )}
-        {category.category_children && (
+        {kategorisi.category_children && (
           <div className="mb-8 text-base-large">
             <ul className="grid grid-cols-1 gap-2">
-              {category.category_children?.map((c) => (
+              {kategorisi.category_children?.map((c) => (
                 <li key={c.id}>
                   <InteractiveLink href={`/categories/${c.handle}`}>
                     {c.name}
@@ -80,14 +80,14 @@ export default function CategoryTemplate({
         <Suspense
           fallback={
             <SkeletonProductGrid
-              numberOfProducts={category.products?.length ?? 8}
+              numberOfProducts={kategorisi.products?.length ?? 8}
             />
           }
         >
           <PaginatedProducts
             sortBy={sort}
             page={pageNumber}
-            categoryId={category.id}
+            categoryId={kategorisi.id}
             countryCode={countryCode}
           />
         </Suspense>

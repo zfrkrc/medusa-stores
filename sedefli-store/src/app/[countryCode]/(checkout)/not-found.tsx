@@ -2,8 +2,8 @@ import InteractiveLink from "@modules/common/components/interactive-link"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "404",
-  description: "Something went wrong",
+  title: "404 | Sedefli Atölye",
+  description: "Aradığınız sayfa bulunamadı.",
 }
 
 export default async function NotFound() {

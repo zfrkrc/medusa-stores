@@ -11,8 +11,8 @@ import { listRegions } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "Profile",
-  description: "View and edit your Medusa Store profile.",
+  title: "Profil | Hobby Store",
+  description: "Hobby Store profilinizi görüntüleyin ve düzenleyin.",
 }
 
 export default async function Profile() {

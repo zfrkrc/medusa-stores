@@ -17,9 +17,7 @@ export default async function Footer() {
             <LocalizedClientLink
               href="/"
               className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            >
-              E-Ticaret
-            </LocalizedClientLink>
+            >Clay by Sevgi</LocalizedClientLink>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-2">
             {productCategories && productCategories?.length > 0 && (

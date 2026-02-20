@@ -7,8 +7,8 @@ import { getRegion } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "Addresses",
-  description: "View your addresses",
+  title: "Adresler | Sedefli Atölye",
+  description: "Adreslerinizi görüntüleyin.",
 }
 
 export default async function Addresses(props: {

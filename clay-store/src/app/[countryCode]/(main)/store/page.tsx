@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Tüm ürünlerimizi keşfedin.",
 }
 
+export const dynamic = "force-dynamic"
+
 type Params = {
   searchParams: Promise<{
     sortBy?: SortOptions

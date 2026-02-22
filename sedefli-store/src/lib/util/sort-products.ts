@@ -46,5 +46,28 @@ export function sortProducts(
     })
   }
 
+  if (sortBy === "sale") {
+    sortedProducts.sort((a, b) => {
+      const aOnSale = a.variants?.some((v: any) => v.calculated_price?.calculated_price?.price_list_type === "sale")
+      const bOnSale = b.variants?.some((v: any) => v.calculated_price?.calculated_price?.price_list_type === "sale")
+
+      if (aOnSale && !bOnSale) return -1
+      if (!aOnSale && bOnSale) return 1
+
+      if (aOnSale && bOnSale) {
+        // Both on sale, sort by highest discount percentage
+        const aMaxDiscount = Math.max(...a.variants!.map((v: any) =>
+          (v.calculated_price?.original_amount - v.calculated_price?.calculated_amount) / v.calculated_price?.original_amount || 0
+        ))
+        const bMaxDiscount = Math.max(...b.variants!.map((v: any) =>
+          (v.calculated_price?.original_amount - v.calculated_price?.calculated_amount) / v.calculated_price?.original_amount || 0
+        ))
+        return bMaxDiscount - aMaxDiscount
+      }
+
+      return 0
+    })
+  }
+
   return sortedProducts
 }

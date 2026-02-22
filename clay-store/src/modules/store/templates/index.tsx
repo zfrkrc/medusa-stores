@@ -28,7 +28,7 @@ const StoreTemplate = ({
         <div className="mb-8 text-2xl-semi">
           <h1 data-testid="store-page-title">Tüm Ürünler</h1>
         </div>
-        <Suspense fallback={<SkeletonProductGrid />}>
+        <Suspense key={`${pageNumber}-${sort}`} fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
             page={pageNumber}

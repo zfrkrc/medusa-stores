@@ -64,6 +64,10 @@ export default async function PaginatedProducts({
     countryCode,
   })
 
+  if (products.length > 0) {
+    console.log(`DEBUG: Product ${products[0].title} variants[0] calculated_price:`, JSON.stringify(products[0].variants?.[0]?.calculated_price, null, 2))
+  }
+
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
 
   return (

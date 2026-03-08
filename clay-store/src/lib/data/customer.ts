@@ -32,7 +32,11 @@ export const retrieveCustomer = async (): Promise<HttpTypes.StoreCustomer | null
         cache: "force-cache",
       })
       .then(({ customer }) => customer)
-      .catch(() => null)
+      .catch(async () => {
+        // JWT is invalid/expired — clear it so syncBetterAuthUser can re-sync next visit
+        await removeAuthToken()
+        return null
+      })
   }
 
   if (customer) return customer

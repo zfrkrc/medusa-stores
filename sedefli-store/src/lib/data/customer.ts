@@ -32,7 +32,11 @@ export const retrieveCustomer = async (): Promise<HttpTypes.StoreCustomer | null
         cache: "force-cache",
       })
       .then(({ customer }) => customer)
-      .catch(() => null)
+      .catch(async () => {
+        // JWT is invalid/expired — clear it so syncBetterAuthUser can re-sync next visit
+        await removeAuthToken()
+        return null
+      })
   }
 
   if (customer) return customer
@@ -84,7 +88,7 @@ function deriveSyncPassword(email: string): string {
 
 export async function syncBetterAuthUser() {
   const authHeaders = await getAuthHeaders()
-  if (authHeaders) return // Already has Medusa JWT
+  if (authHeaders) return // Already has valid Medusa JWT (cleared on 401 by retrieveCustomer)
 
   try {
     const session = await auth.api.getSession({ headers: await headers() })

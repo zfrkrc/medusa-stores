@@ -38,7 +38,7 @@ const Hero = () => {
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-30"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=2340&auto=format&fit=crop')",
+            backgroundImage: "url('/sedefli-login.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/40" />

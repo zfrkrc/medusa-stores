@@ -33,8 +33,8 @@ const Hero = () => {
 
   if (StoreId === "sedefli") {
     return (
-      <div className="w-full border-b border-ui-border-base bg-stone-50 flex flex-col medium:flex-row overflow-hidden" style={{ minHeight: "85vh" }}>
-        {/* Sol: Metin — tam yükseklik, dikey ortalı */}
+      <div className="w-full border-b border-ui-border-base bg-stone-50 flex flex-col medium:flex-row overflow-hidden">
+        {/* Sol: Metin */}
         <div className="w-full medium:w-2/5 flex flex-col justify-center items-start px-8 py-16 small:px-16 gap-6 bg-stone-50">
           <div className="w-fit px-3 py-1 rounded-full border border-stone-300 bg-amber-50 text-amber-900 text-xs font-semibold uppercase tracking-wider">
             El Emeği • Özel Tasarım
@@ -50,16 +50,17 @@ const Hero = () => {
             Her biri eşsiz, her biri özel.
           </p>
           <LocalizedClientLink href="/store">
-            <button className="px-10 py-4 rounded-full bg-stone-800 hover:bg-stone-700 text-white font-medium transition-all shadow-lg hover:shadow-xl">
+            <button type="button" className="px-10 py-4 rounded-full bg-stone-800 hover:bg-stone-700 text-white font-medium transition-all shadow-lg hover:shadow-xl">
               Koleksiyonu Keşfet
             </button>
           </LocalizedClientLink>
         </div>
-        {/* Sağ: Resim — orijinal oran korunur */}
-        <div className="w-full medium:w-3/5 relative" style={{ minHeight: "400px" }}>
-          <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/sedefli-login.jpg')" }}
+        {/* Sağ: Resim — tamamı görünür, orijinal oran */}
+        <div className="w-full medium:w-3/5 flex items-stretch">
+          <img
+            src="/sedefli-login.jpg"
+            alt="Sedefli Atölye"
+            className="w-full object-contain block"
           />
         </div>
       </div>

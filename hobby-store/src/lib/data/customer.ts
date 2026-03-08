@@ -76,6 +76,12 @@ export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
   return updateRes
 }
 
+function deriveSyncPassword(userId: string): string {
+  const secret = process.env.BETTER_AUTH_SECRET || "default-sync-secret"
+  const { createHmac } = require("crypto")
+  return createHmac("sha256", secret).update(userId).digest("hex")
+}
+
 export async function syncBetterAuthUser() {
   const authHeaders = await getAuthHeaders()
   if (authHeaders) return
@@ -85,7 +91,7 @@ export async function syncBetterAuthUser() {
     if (!session?.user) return
 
     const email = session.user.email
-    const password = `ba_${session.user.id}`
+    const password = deriveSyncPassword(session.user.id)
     const names = session.user.name?.split(" ") || ["User"]
 
     const loginToken = await sdk.auth.login("customer", "emailpass", { email, password }).catch(() => null)

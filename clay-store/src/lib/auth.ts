@@ -8,21 +8,21 @@ const pool = new Pool({
 export const auth = betterAuth({
     database: pool,
     secret: process.env.BETTER_AUTH_SECRET || "supersecretbetterauthkey123",
-    baseURL: process.env.BETTER_AUTH_URL || "https://hobby.zaferkaraca.net", // Explicit base URL
+    baseURL: process.env.BETTER_AUTH_URL || "https://claybysevgi.com",
     emailAndPassword: {
         enabled: true,
     },
     user: {
-        modelName: "hobby_user",
+        modelName: "clay_user",
     },
     session: {
-        modelName: "hobby_session",
+        modelName: "clay_session",
     },
     account: {
-        modelName: "hobby_account",
+        modelName: "clay_account",
     },
     verification: {
-        modelName: "hobby_verification",
+        modelName: "clay_verification",
     },
     socialProviders: {
         google: {

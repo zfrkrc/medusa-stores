@@ -8,6 +8,10 @@ if (process.env.MEDUSA_BACKEND_URL) {
   MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL
 }
 
+// Store handle identifies this storefront to the backend for data isolation.
+// Must match the handle set in your store-management module (setup-multistore.ts).
+const STORE_HANDLE = process.env.NEXT_PUBLIC_STORE_HANDLE || "clay-store"
+
 export const sdk = new Medusa({
   baseUrl: MEDUSA_BACKEND_URL,
   debug: process.env.NODE_ENV === "development",
@@ -25,11 +29,13 @@ sdk.client.fetch = async <T>(
   try {
     localeHeader = await getLocaleHeader()
     headers["x-medusa-locale"] ??= localeHeader["x-medusa-locale"]
-  } catch {}
+  } catch { }
 
+  // Inject store-handle header so backend can scope data per store
   const newHeaders = {
     ...localeHeader,
     ...headers,
+    "x-store-handle": STORE_HANDLE,
   }
   init = {
     ...init,

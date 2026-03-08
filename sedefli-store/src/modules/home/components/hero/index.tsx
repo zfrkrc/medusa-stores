@@ -33,37 +33,42 @@ const Hero = () => {
 
   if (StoreId === "sedefli") {
     return (
-      <div className="h-[75vh] w-full relative bg-stone-100 flex items-center justify-center overflow-hidden">
-        {/* Sedefli Atölye Design */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-75"
-          style={{
-            backgroundImage: "url('/sedefli-login.jpg')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 via-transparent to-stone-900/10" />
-        <div className="relative z-10 text-center px-8 max-w-3xl">
-          <div className="mb-5">
-            <span className="inline-block px-5 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 text-white text-xs font-medium tracking-widest uppercase">
+      <div className="h-[85vh] w-full border-b border-ui-border-base relative bg-stone-50 flex flex-col-reverse medium:flex-row overflow-hidden">
+        {/* Sol: Metin */}
+        <div className="flex-1 flex flex-col justify-center items-start p-8 small:p-16 gap-6 z-10 bg-stone-50 medium:bg-transparent">
+          <span className="flex flex-col gap-4">
+            <div className="w-fit px-3 py-1 rounded-full border border-stone-300 bg-amber-50 text-amber-900 text-xs font-semibold uppercase tracking-wider">
               El Emeği • Özel Tasarım
-            </span>
-          </div>
-          <Heading
-            level="h1"
-            className="text-5xl small:text-7xl text-white font-serif font-light tracking-wide mb-5 drop-shadow-lg"
-          >
-            Sedefli Atölye
-          </Heading>
-          <p className="text-base small:text-lg text-white/90 font-light mb-10 max-w-xl mx-auto leading-relaxed drop-shadow">
-            Sedef kakma sanatı ve porselen işçiliğinde ustalık.
-            <br />
-            Her biri eşsiz, her biri özel.
-          </p>
+            </div>
+            <Heading
+              level="h1"
+              className="text-4xl small:text-6xl leading-tight text-stone-800 font-serif font-medium tracking-tight"
+            >
+              Sedefli Atölye
+            </Heading>
+            <Heading
+              level="h2"
+              className="text-lg small:text-xl leading-relaxed text-stone-600 font-normal max-w-md"
+            >
+              Sedef kakma sanatı ve porselen işçiliğinde ustalık.
+              Her biri eşsiz, her biri özel.
+            </Heading>
+          </span>
           <LocalizedClientLink href="/store">
-            <button className="px-12 py-4 rounded-full bg-white/15 backdrop-blur-sm border border-white/60 hover:bg-white/25 text-white text-base font-light transition-all duration-300 shadow-lg hover:shadow-xl tracking-wide">
+            <button className="px-10 py-4 rounded-full bg-stone-800 hover:bg-stone-700 text-white font-medium transition-all shadow-lg hover:shadow-xl">
               Koleksiyonu Keşfet
             </button>
           </LocalizedClientLink>
+        </div>
+        {/* Sağ: Resim */}
+        <div className="flex-1 relative h-full min-h-[400px]">
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/sedefli-login.jpg')",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-50 via-stone-50/40 to-transparent medium:opacity-0" />
         </div>
       </div>
     )

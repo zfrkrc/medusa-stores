@@ -1,4 +1,4 @@
-import { retrieveCustomer } from "@lib/data/customer"
+import { retrieveCustomer, syncBetterAuthUser } from "@lib/data/customer"
 import { Toaster } from "@medusajs/ui"
 import AccountLayout from "@modules/account/templates/account-layout"
 
@@ -9,6 +9,7 @@ export default async function AccountPageLayout({
   dashboard?: React.ReactNode
   login?: React.ReactNode
 }) {
+  await syncBetterAuthUser()
   const customer = await retrieveCustomer().catch(() => null)
 
   return (

@@ -76,6 +76,45 @@ export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
   return updateRes
 }
 
+export async function syncBetterAuthUser() {
+  const authHeaders = await getAuthHeaders()
+  if (authHeaders) return // Already has Medusa JWT
+
+  try {
+    const session = await auth.api.getSession({ headers: await headers() })
+    if (!session?.user) return
+
+    const email = session.user.email
+    const password = `ba_${session.user.id}`
+    const names = session.user.name?.split(" ") || ["User"]
+
+    // Try login first (customer may already exist)
+    const loginToken = await sdk.auth.login("customer", "emailpass", { email, password }).catch(() => null)
+    if (loginToken) {
+      await setAuthToken(loginToken as string)
+      const customerCacheTag = await getCacheTag("customers")
+      revalidateTag(customerCacheTag)
+      return
+    }
+
+    // Register + create customer
+    const token = await sdk.auth.register("customer", "emailpass", { email, password })
+    await setAuthToken(token as string)
+    const hdrs = { ...(await getAuthHeaders()) }
+    await sdk.store.customer.create({
+      email,
+      first_name: names[0] || "User",
+      last_name: names.slice(1).join(" ") || "",
+    }, {}, hdrs)
+    const newLoginToken = await sdk.auth.login("customer", "emailpass", { email, password })
+    await setAuthToken(newLoginToken as string)
+    const customerCacheTag = await getCacheTag("customers")
+    revalidateTag(customerCacheTag)
+  } catch (e) {
+    console.error("syncBetterAuthUser error:", e)
+  }
+}
+
 export async function signup(_currentState: unknown, formData: FormData) {
   const password = formData.get("password") as string
   const customerForm = {
@@ -91,17 +130,17 @@ export async function signup(_currentState: unknown, formData: FormData) {
       password: password,
     })
     await setAuthToken(token as string)
-    const headers = { ...(await getAuthHeaders()) }
-    const { customer: createdCustomer } = await sdk.store.customer.create(customerForm, {}, headers)
+    const hdrs = { ...(await getAuthHeaders()) }
+    await sdk.store.customer.create(customerForm, {}, hdrs)
     const loginToken = await sdk.auth.login("customer", "emailpass", { email: customerForm.email, password })
     await setAuthToken(loginToken as string)
     const customerCacheTag = await getCacheTag("customers")
     revalidateTag(customerCacheTag)
     await transferCart()
-    return createdCustomer
   } catch (error: any) {
     return error.toString()
   }
+  redirect("/account")
 }
 
 export async function login(_currentState: unknown, formData: FormData) {

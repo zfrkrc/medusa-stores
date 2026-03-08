@@ -33,39 +33,38 @@ const Hero = () => {
 
   if (StoreId === "sedefli") {
     return (
-      <div className="h-[95vh] w-full relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center overflow-hidden">
+      <div className="h-[75vh] w-full relative bg-stone-100 flex items-center justify-center overflow-hidden">
         {/* Sedefli Atölye Design */}
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-30"
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-75"
           style={{
             backgroundImage: "url('/sedefli-login.jpg')",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/40" />
-        <div className="relative z-10 text-center px-8 max-w-4xl">
-          <div className="mb-6">
-            <span className="inline-block px-6 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-indigo-200/50 text-indigo-900 text-sm font-medium tracking-widest uppercase shadow-sm">
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 via-transparent to-stone-900/10" />
+        <div className="relative z-10 text-center px-8 max-w-3xl">
+          <div className="mb-5">
+            <span className="inline-block px-5 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 text-white text-xs font-medium tracking-widest uppercase">
               El Emeği • Özel Tasarım
             </span>
           </div>
           <Heading
             level="h1"
-            className="text-6xl small:text-8xl text-slate-800 font-serif font-light tracking-tight mb-6"
+            className="text-5xl small:text-7xl text-white font-serif font-light tracking-wide mb-5 drop-shadow-lg"
           >
             Sedefli Atölye
           </Heading>
-          <p className="text-xl small:text-2xl text-slate-600 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base small:text-lg text-white/90 font-light mb-10 max-w-xl mx-auto leading-relaxed drop-shadow">
             Sedef kakma sanatı ve porselen işçiliğinde ustalık.
             <br />
-            <span className="text-indigo-700">Her biri eşsiz, her biri özel.</span>
+            Her biri eşsiz, her biri özel.
           </p>
           <LocalizedClientLink href="/store">
-            <button className="px-14 py-5 rounded-full bg-gradient-to-r from-indigo-900 to-blue-900 hover:from-indigo-800 hover:to-blue-800 text-white text-lg font-light transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+            <button className="px-12 py-4 rounded-full bg-white/15 backdrop-blur-sm border border-white/60 hover:bg-white/25 text-white text-base font-light transition-all duration-300 shadow-lg hover:shadow-xl tracking-wide">
               Koleksiyonu Keşfet
             </button>
           </LocalizedClientLink>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
       </div>
     )
   }

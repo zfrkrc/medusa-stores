@@ -33,42 +33,34 @@ const Hero = () => {
 
   if (StoreId === "sedefli") {
     return (
-      <div className="h-[85vh] w-full border-b border-ui-border-base relative bg-stone-50 flex flex-col-reverse medium:flex-row overflow-hidden">
-        {/* Sol: Metin */}
-        <div className="flex-1 flex flex-col justify-center items-start p-8 small:p-16 gap-6 z-10 bg-stone-50 medium:bg-transparent">
-          <span className="flex flex-col gap-4">
-            <div className="w-fit px-3 py-1 rounded-full border border-stone-300 bg-amber-50 text-amber-900 text-xs font-semibold uppercase tracking-wider">
-              El Emeği • Özel Tasarım
-            </div>
-            <Heading
-              level="h1"
-              className="text-4xl small:text-6xl leading-tight text-stone-800 font-serif font-medium tracking-tight"
-            >
-              Sedefli Atölye
-            </Heading>
-            <Heading
-              level="h2"
-              className="text-lg small:text-xl leading-relaxed text-stone-600 font-normal max-w-md"
-            >
-              Sedef kakma sanatı ve porselen işçiliğinde ustalık.
-              Her biri eşsiz, her biri özel.
-            </Heading>
-          </span>
+      <div className="w-full border-b border-ui-border-base bg-stone-50 flex flex-col medium:flex-row overflow-hidden" style={{ minHeight: "85vh" }}>
+        {/* Sol: Metin — tam yükseklik, dikey ortalı */}
+        <div className="w-full medium:w-2/5 flex flex-col justify-center items-start px-8 py-16 small:px-16 gap-6 bg-stone-50">
+          <div className="w-fit px-3 py-1 rounded-full border border-stone-300 bg-amber-50 text-amber-900 text-xs font-semibold uppercase tracking-wider">
+            El Emeği • Özel Tasarım
+          </div>
+          <Heading
+            level="h1"
+            className="text-4xl small:text-5xl leading-tight text-stone-800 font-serif font-medium tracking-tight"
+          >
+            Sedefli Atölye
+          </Heading>
+          <p className="text-base small:text-lg leading-relaxed text-stone-600 font-normal max-w-sm">
+            Sedef kakma sanatı ve porselen işçiliğinde ustalık.
+            Her biri eşsiz, her biri özel.
+          </p>
           <LocalizedClientLink href="/store">
             <button className="px-10 py-4 rounded-full bg-stone-800 hover:bg-stone-700 text-white font-medium transition-all shadow-lg hover:shadow-xl">
               Koleksiyonu Keşfet
             </button>
           </LocalizedClientLink>
         </div>
-        {/* Sağ: Resim */}
-        <div className="flex-1 relative h-full min-h-[400px]">
+        {/* Sağ: Resim — orijinal oran korunur */}
+        <div className="w-full medium:w-3/5 relative" style={{ minHeight: "400px" }}>
           <div
             className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/sedefli-login.jpg')",
-            }}
+            style={{ backgroundImage: "url('/sedefli-login.jpg')" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-50 via-stone-50/40 to-transparent medium:opacity-0" />
         </div>
       </div>
     )

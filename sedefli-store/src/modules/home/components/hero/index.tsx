@@ -33,35 +33,37 @@ const Hero = () => {
 
   if (StoreId === "sedefli") {
     return (
-      <div className="w-full border-b border-ui-border-base bg-stone-50 flex flex-col medium:flex-row medium:h-[520px]">
-        {/* Sol: Metin */}
-        <div className="w-full medium:w-2/5 h-full flex flex-col justify-center items-start px-8 small:px-16 gap-6 py-12 medium:py-0">
-          <div className="w-fit px-3 py-1 rounded-full border border-stone-300 bg-amber-50 text-amber-900 text-xs font-semibold uppercase tracking-wider">
-            El Emeği • Özel Tasarım
+      <div className="w-full border-b border-ui-border-base bg-stone-50 py-16">
+        <div className="max-w-5xl mx-auto px-8 flex flex-col medium:flex-row items-center gap-12">
+          {/* Sol: Metin */}
+          <div className="flex flex-col items-start gap-6 medium:w-1/2">
+            <div className="w-fit px-3 py-1 rounded-full border border-stone-300 bg-amber-50 text-amber-900 text-xs font-semibold uppercase tracking-wider">
+              El Emeği • Özel Tasarım
+            </div>
+            <Heading
+              level="h1"
+              className="text-4xl small:text-5xl leading-tight text-stone-800 font-serif font-medium tracking-tight"
+            >
+              Sedefli Atölye
+            </Heading>
+            <p className="text-base small:text-lg leading-relaxed text-stone-600 font-normal">
+              Sedef kakma sanatı ve porselen işçiliğinde ustalık.
+              Her biri eşsiz, her biri özel.
+            </p>
+            <LocalizedClientLink href="/store">
+              <button type="button" className="px-10 py-4 rounded-full bg-stone-800 hover:bg-stone-700 text-white font-medium transition-all shadow-lg hover:shadow-xl">
+                Koleksiyonu Keşfet
+              </button>
+            </LocalizedClientLink>
           </div>
-          <Heading
-            level="h1"
-            className="text-4xl small:text-5xl leading-tight text-stone-800 font-serif font-medium tracking-tight"
-          >
-            Sedefli Atölye
-          </Heading>
-          <p className="text-base small:text-lg leading-relaxed text-stone-600 font-normal max-w-sm">
-            Sedef kakma sanatı ve porselen işçiliğinde ustalık.
-            Her biri eşsiz, her biri özel.
-          </p>
-          <LocalizedClientLink href="/store">
-            <button type="button" className="px-10 py-4 rounded-full bg-stone-800 hover:bg-stone-700 text-white font-medium transition-all shadow-lg hover:shadow-xl">
-              Koleksiyonu Keşfet
-            </button>
-          </LocalizedClientLink>
-        </div>
-        {/* Sağ: Resim — kesilmez, tamamı görünür */}
-        <div className="w-full medium:w-3/5 h-full flex items-center justify-center overflow-hidden">
-          <img
-            src="/sedefli-login.jpg"
-            alt="Sedefli Atölye"
-            className="h-full w-auto object-contain block"
-          />
+          {/* Sağ: Resim — kesilmez */}
+          <div className="medium:w-1/2 flex justify-center">
+            <img
+              src="/sedefli-login.jpg"
+              alt="Sedefli Atölye"
+              className="max-h-[420px] w-auto block rounded-lg shadow-md"
+            />
+          </div>
         </div>
       </div>
     )

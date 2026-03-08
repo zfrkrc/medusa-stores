@@ -32,11 +32,7 @@ export const retrieveCustomer = async (): Promise<HttpTypes.StoreCustomer | null
         cache: "force-cache",
       })
       .then(({ customer }) => customer)
-      .catch(async () => {
-        // JWT is invalid/expired — clear it so syncBetterAuthUser can re-sync next visit
-        await removeAuthToken()
-        return null
-      })
+      .catch(() => null)
   }
 
   if (customer) return customer
@@ -88,7 +84,17 @@ function deriveSyncPassword(email: string): string {
 
 export async function syncBetterAuthUser() {
   const authHeaders = await getAuthHeaders()
-  if (authHeaders) return
+
+  if (authHeaders && Object.keys(authHeaders).length > 0) {
+    // Validate existing JWT — if still valid, skip sync
+    const isValid = await sdk.client
+      .fetch("/store/customers/me", { method: "GET", headers: authHeaders, cache: "no-store" })
+      .then(() => true)
+      .catch(() => false)
+    if (isValid) return
+    // JWT is stale — clear it and re-sync
+    await removeAuthToken()
+  }
 
   try {
     const session = await auth.api.getSession({ headers: await headers() })

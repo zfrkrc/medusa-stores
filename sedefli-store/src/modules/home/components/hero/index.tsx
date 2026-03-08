@@ -33,9 +33,9 @@ const Hero = () => {
 
   if (StoreId === "sedefli") {
     return (
-      <div className="w-full border-b border-ui-border-base bg-stone-50 flex flex-col medium:flex-row overflow-hidden">
+      <div className="h-[500px] medium:h-[600px] w-full border-b border-ui-border-base bg-stone-50 flex flex-col medium:flex-row overflow-hidden">
         {/* Sol: Metin */}
-        <div className="w-full medium:w-2/5 flex flex-col justify-center items-start px-8 py-16 small:px-16 gap-6 bg-stone-50">
+        <div className="w-full medium:w-2/5 h-full flex flex-col justify-center items-start px-8 small:px-16 gap-6 bg-stone-50">
           <div className="w-fit px-3 py-1 rounded-full border border-stone-300 bg-amber-50 text-amber-900 text-xs font-semibold uppercase tracking-wider">
             El Emeği • Özel Tasarım
           </div>
@@ -55,12 +55,12 @@ const Hero = () => {
             </button>
           </LocalizedClientLink>
         </div>
-        {/* Sağ: Resim — tamamı görünür, orijinal oran */}
-        <div className="w-full medium:w-3/5 flex items-stretch">
+        {/* Sağ: Resim */}
+        <div className="w-full medium:w-3/5 h-full overflow-hidden">
           <img
             src="/sedefli-login.jpg"
             alt="Sedefli Atölye"
-            className="w-full object-contain block"
+            className="w-full h-full object-cover object-top"
           />
         </div>
       </div>

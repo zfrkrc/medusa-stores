@@ -120,8 +120,15 @@ export async function login(_currentState: unknown, formData: FormData) {
 }
 
 export async function signout(countryCode: string) {
-  await sdk.auth.logout()
+  // Medusa token temizle
+  await sdk.auth.logout().catch(() => {})
   await removeAuthToken()
+
+  // Better Auth session temizle
+  try {
+    await auth.api.signOut({ headers: await headers() })
+  } catch {}
+
   const customerCacheTag = await getCacheTag("customers")
   revalidateTag(customerCacheTag)
   await removeCartId()
